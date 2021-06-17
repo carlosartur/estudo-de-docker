@@ -1,0 +1,4 @@
+FROM nginx:stable-alpine
+EXPOSE 8000
+EXPOSE 443
+EXPOSE 8080

@@ -1,0 +1,3 @@
+FROM mysql
+ENV MYSQL_ROOT_PASSWORD carlos123
+# cd ~/codigos/docker/db && sudo docker run -d -v $(pwd)/db/data:/var/lib/mysql --rm --name mysql-container mysql

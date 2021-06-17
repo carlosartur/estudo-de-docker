@@ -1,0 +1,2 @@
+FROM php:8.0.5-fpm-alpine
+# sudo docker run -d --link mysql-container --rm --name php-container php
