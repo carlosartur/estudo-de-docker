@@ -10,6 +10,8 @@ services:
             - ${PWD}
         networks: 
             - my_network
+        ports: 
+            - '3306:3306'
     php:
         # url: https://hub.docker.com/r/trafex/php-nginx/
         build:
