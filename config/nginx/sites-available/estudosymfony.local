@@ -1,17 +1,21 @@
-server {
-    listen 80;
-    listen [::]:80;
+events {}
 
-    error_log  /var/log/nginx/error.log;
-    access_log /var/log/nginx/access.log;
+http {
+    server {
+        listen 8080;
+        listen [::]:8080;
 
-    root /var/www/html;
-    index index.html index.htm;
+        error_log  /var/log/nginx/error.log;
+        access_log /var/log/nginx/access.log;
 
-    server_name estudosymfony.local;
+        root /var/www/html;
+        index index.html index.htm;
 
-    location / {
-        try_files $uri $uri/ =404;
+        server_name estudosymfony.local;
+
+        location / {
+            try_files $uri $uri/ =404;
+        }
     }
 }
 

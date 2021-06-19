@@ -10,43 +10,16 @@ services:
             - ${PWD}
         networks: 
             - my_network
-    
     php:
-        image: php:8.0.5-fpm-alpine
-        restart: always
-        build:
-            context: ./php
-            dockerfile: dockerfile
-        container_name: php
-        working_dir: /var/www/html
-        ports:
-            - '9000:9000'
-        volumes:
-            - './app:/var/www/html'
-        depends_on:
-            - mysql
-        networks: 
-            - my_network
-    
-    nginx:
-        image: nginx:stable-alpine
-        container_name: nginx
-        restart: always
+        # url: https://hub.docker.com/r/trafex/php-nginx/
         build:
             context: ./nginx
-            dockerfile: dockerfile
+            dockerfile: dockerfile 
         ports:
-            - "8080:80"
-            - "443:443"
-            - "8000:8000"
-            - "3000"
-        expose: 
-            - '8000'
-            - '443'
-        links:
-            - php
-        depends_on: 
-            - php
+            - '8080:8080'
+            - '443:8443'
+        depends_on:
+            - mysql
         volumes:
             - './app:/var/www/html'
             - './logs/nginx:/var/log/nginx'
@@ -55,6 +28,8 @@ services:
             - './config/nginx/sites-enabled:/etc/nginx/sites-enabled'
         networks: 
             - my_network
+        links: 
+            - mysql
     
 networks:
     my_network:
