@@ -3,7 +3,13 @@ FROM trafex/php-nginx:latest
 # Install composer from the official image
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
+EXPOSE 8080 443
+
+USER root
+RUN apk add php8-pdo_mysql
+
+USER nobody
+
 # Run composer install to install the dependencies
 # RUN composer install --optimize-autoloader --no-interaction --no-progress
 
-EXPOSE 8080 443

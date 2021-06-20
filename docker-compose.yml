@@ -2,6 +2,7 @@ version: "3.3"
 services:
     mysql:
         image: mysql
+        container_name: mysql
         command: --default-authentication-plugin=mysql_native_password
         restart: always
         environment:
@@ -14,6 +15,7 @@ services:
             - '3306:3306'
     php:
         # url: https://hub.docker.com/r/trafex/php-nginx/
+        container_name: php
         build:
             context: ./nginx
             dockerfile: dockerfile 
@@ -28,9 +30,10 @@ services:
             - './config/nginx:/etc/nginx/conf.d'
             - './config/nginx/sites-available:/etc/nginx/sites-available'
             - './config/nginx/sites-enabled:/etc/nginx/sites-enabled'
+            - './config/php/php.ini:/etc/php8/php.ini'
         networks: 
             - my_network
-        links: 
+        links:
             - mysql
     
 networks:
