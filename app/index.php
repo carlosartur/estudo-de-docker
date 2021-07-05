@@ -24,16 +24,38 @@
             $dns = "{$_this->engine}:port=3306;dbname={$_this->database};host={$_this->host};";
 
             $connection = new \PDO($dns, $_this->user, $_this->pass);
+            // $stmt = $connection->prepare("insert into 
+            //     `teste` (`email`, `firstname`, `lastname`, `reg_date`) 
+            //     values (?, ?, ?, now());");
+            // $stmt->bindParam(1, rand());
+            // $stmt->bindParam(2, rand());
+            // $stmt->bindParam(3, rand());
+            // $stmt->execute();
+
             $stmt = $connection->query("SELECT * FROM teste;");
             while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
                 print_r($row);
+                echo '<hr>';
             }
+            print_r(get_loaded_extensions());
+            print_r(token_get_all("<?php echo \"bla\";"));
+
+            $dom = new DOMDocument;
+            $dom->loadXML('<books><book><title>blah</title></book></books>');
+            if (!$dom) {
+                echo 'Error while parsing the document';
+                exit;
+            }
+
+            $s = simplexml_import_dom($dom);
+
+            echo $s->book[0]->title;
         } catch (Exception $exception) {
             print_r($exception);
         } catch (Error $error) {
             print_r($error);
         }
-        // phpinfo();
+        phpinfo();
         ?>
     </pre>
 </body>

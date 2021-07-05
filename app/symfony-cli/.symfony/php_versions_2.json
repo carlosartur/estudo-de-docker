@@ -1,0 +1,13 @@
+[
+    {
+        "version": "8.0.6",
+        "path": "/usr",
+        "php_path": "/usr/bin/php8",
+        "fpm_path": "/usr/sbin/php-fpm8",
+        "cgi_path": "",
+        "php_config_path": "",
+        "phpize_path": "",
+        "phpdbg_path": "",
+        "is_system": true
+    }
+]

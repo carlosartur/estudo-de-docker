@@ -27,10 +27,13 @@ services:
         volumes:
             - './app:/var/www/html'
             - './logs/nginx:/var/log/nginx'
+            - './app/symfony-cli/symfony:/usr/symfony-installer'
+            - './app/symfony-cli/.symfony:/.symfony'
             - './config/nginx:/etc/nginx/conf.d'
             - './config/nginx/sites-available:/etc/nginx/sites-available'
             - './config/nginx/sites-enabled:/etc/nginx/sites-enabled'
             - './config/php/php.ini:/etc/php8/php.ini'
+            - './config/php/conf.d:/etc/php8/conf.d'
         networks: 
             - my_network
         links:
