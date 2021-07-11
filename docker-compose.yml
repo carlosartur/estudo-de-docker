@@ -30,7 +30,7 @@ services:
             - './logs/nginx:/var/log/nginx'
             - './app/symfony-cli/symfony:/usr/symfony-installer'
             - './app/symfony-cli/.symfony:/.symfony'
-            - './config/nginx:/etc/nginx/conf.d'
+            - './config/nginx/nginx.conf:/etc/nginx/nginx.conf'
             - './config/nginx/sites-available:/etc/nginx/sites-available'
             - './config/nginx/sites-enabled:/etc/nginx/sites-enabled'
             - './config/php/php.ini:/etc/php8/php.ini'
