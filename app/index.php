@@ -15,6 +15,7 @@
     <pre>
         <?php
         try {
+            xdebug_info();
             $_this = new stdClass();
             $_this->engine = 'mysql';
             $_this->host = 'mysql';
@@ -34,11 +35,11 @@
 
             $stmt = $connection->query("SELECT * FROM teste;");
             while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
-                print_r($row);
+                var_dump($row);
                 echo '<hr>';
             }
-            print_r(get_loaded_extensions());
-            print_r(token_get_all("<?php echo \"bla\";"));
+            var_dump(get_loaded_extensions());
+            var_dump(token_get_all("<?php echo \"bla\";"));
 
             $dom = new DOMDocument;
             $dom->loadXML('<books><book><title>blah</title></book></books>');
@@ -51,9 +52,9 @@
 
             echo $s->book[0]->title;
         } catch (Exception $exception) {
-            print_r($exception);
+            var_dump($exception);
         } catch (Error $error) {
-            print_r($error);
+            var_dump($error);
         }
         phpinfo();
         ?>

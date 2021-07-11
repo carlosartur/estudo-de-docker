@@ -17,13 +17,16 @@ EXPOSE 8080 443
 
 USER root
 RUN apk add sudo
+RUN apk update && apk upgrade
 RUN apk add php8-common
 RUN apk add php8-pdo_mysql
 RUN apk add php8-iconv
 RUN apk add php8-tokenizer
 RUN apk add php8-simplexml
 RUN apk add php8-posix
+RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS
 RUN apk --no-cache add php8-pear php8-dev gcc musl-dev make
+RUN apk add php8-pecl-xdebug
 RUN apk add git
 
 # XDEBUG

@@ -22,6 +22,7 @@ services:
         ports:
             - '8080:8080'
             - '443:8443'
+            - '9003:9003'
         depends_on:
             - mysql
         volumes:
