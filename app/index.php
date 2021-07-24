@@ -15,7 +15,35 @@
     <pre>
         <?php
         try {
-            xdebug_info();
+            $dom = new DOMDocument;
+            $dom->loadXML('<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="sensio_framework_extra.controller.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="annotation_reader" />
+        </service>
+    </services>
+</container>');
+            if (!$dom) {
+                echo 'Error while parsing the document';
+                exit;
+            }
+
+            // $s = simplexml_import_dom($dom);
+            var_dump($dom);
+            exit;
+
+            $curl = curl_init('http://symfony.com/schema/dic/services/services-1.0.xsd');
+            $result = curl_exec($curl);
+
+            print_r($result);
+
+            // xdebug_info();
             $_this = new stdClass();
             $_this->engine = 'mysql';
             $_this->host = 'mysql';
@@ -56,7 +84,7 @@
         } catch (Error $error) {
             var_dump($error);
         }
-        phpinfo();
+        // phpinfo();
         ?>
     </pre>
 </body>
